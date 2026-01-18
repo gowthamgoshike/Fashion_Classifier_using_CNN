@@ -1,0 +1,15 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the trained model into the backend container
+      - ./model/fashion_model.h5:/app/fashion_model.h5
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
